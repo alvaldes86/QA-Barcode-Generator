@@ -43,16 +43,23 @@ namespace QA_Barcode_Generator
 
 
         private void btnCreateBarcode_Click(object sender, EventArgs e)
-        {
-
+        {  
             Gtins = new string[tbxUserInput.Lines.Count()];
 
             for (int i = 0; i < tbxUserInput.Lines.Count(); i++)
             {
-                string lineRead = tbxUserInput.Lines[i].TrimStart('0');
-                int paddingLength = 12 - lineRead.Length;
-                string paddedLine = new string('0', paddingLength) + lineRead;
-                Gtins[i] = paddedLine;
+                string lineRead = tbxUserInput.Lines[i].Trim().TrimStart('0'); 
+                if(lineRead.Length >= 12)
+                {
+                    MessageBox.Show("Please enter only 11 digits number.");
+                }
+                else
+                {
+                    int paddingLength = 11 - lineRead.Length;
+                    string paddedLine = new string('0', paddingLength) + lineRead;
+                    Gtins[i] = paddedLine;
+                }
+                
             }
 
 
@@ -64,13 +71,14 @@ namespace QA_Barcode_Generator
 
             for (int i = 0; i < Gtins.Length; i++)
             {
-                barcode = writer.Write(Gtins[i]);
-                barcodes.Add(barcode);
-                barcode.Save($"{savedFilePath}\\{i}.png", ImageFormat.Png);
+                barcode = writer.Write(Gtins[i]);               
+                barcodes.Add(writer.Write(Gtins[i]));
+                //barcode.Save($"{savedFilePath}\\{i}.png", ImageFormat.Png);
             }
 
-            // Set the image of the last barcode to the PictureBox
+            
             pictureBoxBarcodeCreated.Image = barcodes[position];
+            
 
         }
 
