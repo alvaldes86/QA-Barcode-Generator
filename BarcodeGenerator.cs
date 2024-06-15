@@ -17,13 +17,15 @@ namespace QA_Barcode_Generator
     {
         public string[] Gtins { get; set; }
 
-        string savedFilePath = "C:\\Users\\p1268221\\Documents\\Code\\Current Learning\\Projects\\QA Barcode Generator\\Barcodes Generated\\";
+        public Bitmap barcode { get; set; }
 
-        Bitmap barcode;
+        public List<Bitmap> barcodes = new List<Bitmap>();
 
-        List<Bitmap> barcodes = new List<Bitmap>();
+        public int position = 0;
 
-        int position = 0;
+        string saveFilePath = "C:\\Users\\p1268221\\Documents\\Code\\Current Learning\\Projects\\QA Barcode Generator\\Barcodes Generated\\";
+
+
 
         public BarcodeGenerator()
         {
@@ -39,6 +41,7 @@ namespace QA_Barcode_Generator
             pictureBoxBarcodeCreated.Image = null;
             Gtins = null;
             barcodes.Clear();
+            tbxDescription.Clear();
         }
 
 
@@ -62,18 +65,15 @@ namespace QA_Barcode_Generator
                 
             }
 
-
             BarcodeWriter writer = new BarcodeWriter
-            {
-                Format = BarcodeFormat.UPC_A,
-                Options = { Width = 250, Height = 190 }
+            {   Format = BarcodeFormat.UPC_A,
+                Options = { Width = (int)widthSelector.Value, Height = (int)lengthSelector.Value }
             };
 
             for (int i = 0; i < Gtins.Length; i++)
             {
                 barcode = writer.Write(Gtins[i]);               
                 barcodes.Add(writer.Write(Gtins[i]));
-                //barcode.Save($"{savedFilePath}\\{i}.png", ImageFormat.Png);
             }
 
             
@@ -84,23 +84,28 @@ namespace QA_Barcode_Generator
 
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-          
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
+                string saveDirectory = Path.GetDirectoryName(saveFile.FileName);
 
                 for (int i = 0; i < Gtins.Length; i++)
                 {
-                    saveFile.Title = $"{i.ToString()}";
-                    barcode.Save($"{saveFile.FileName}\\{i.ToString()}.png", ImageFormat.Png);
+                    // Create the directory if it doesn't exist
+                    if (!Directory.Exists(saveDirectory))
+                    {
+                        Directory.CreateDirectory(saveDirectory);
+                    }
+
+                    // Construct the full file path
+                    string filePath = Path.Combine(saveDirectory, $"{tbxDescription.Lines[i].ToString()}.jpg");
+
+                    // Save the barcode image                   
+                    barcode.Save(filePath, ImageFormat.Png);
                 }
-                
             }
         }
 
 
-
-
-        
         private void btnNext_Click(object sender, EventArgs e)
         {
             position++;
