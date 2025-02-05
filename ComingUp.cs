@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QA_Barcode_Generator
 {
-    public partial class viewSetting : UserControl
+    public partial class ComingUp : UserControl
     {
-        public viewSetting()
+        public ComingUp()
         {
             InitializeComponent();
         }

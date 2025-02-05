@@ -30,12 +30,16 @@
         {
             printDialog = new PrintDialog();
             navContainer = new Panel();
-            button2 = new Button();
-            btnSettings = new Button();
-            barcodeGenerator = new Button();
-            viewSetting1 = new viewSetting();
+            btnGS1DataExpanded = new Button();
+            btnType2 = new Button();
+            btnUpcaCode128 = new Button();
+            saveFile = new SaveFileDialog();
             bodyContainer = new Panel();
-            barcodeGenerator1 = new BarcodeGenerator();
+            userControlType21 = new UserControlType2();
+            gS1Coupon1 = new GS1Coupon();
+            ercUpca1 = new ErcUpca();
+            btnSolutranMallGC = new Button();
+            solutranMallgc1 = new SolutranMallGC();
             navContainer.SuspendLayout();
             bodyContainer.SuspendLayout();
             SuspendLayout();
@@ -47,87 +51,127 @@
             // navContainer
             // 
             navContainer.BackColor = Color.FromArgb(1, 1, 50);
-            navContainer.Controls.Add(button2);
-            navContainer.Controls.Add(btnSettings);
-            navContainer.Controls.Add(barcodeGenerator);
+            navContainer.Controls.Add(btnSolutranMallGC);
+            navContainer.Controls.Add(btnGS1DataExpanded);
+            navContainer.Controls.Add(btnType2);
+            navContainer.Controls.Add(btnUpcaCode128);
             navContainer.Location = new Point(0, 0);
             navContainer.Name = "navContainer";
-            navContainer.Size = new Size(199, 639);
+            navContainer.Size = new Size(178, 765);
             navContainer.TabIndex = 3;
             // 
-            // button2
+            // btnGS1DataExpanded
             // 
-            button2.BackColor = Color.FromArgb(10, 1, 169);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 108);
-            button2.Name = "button2";
-            button2.Size = new Size(199, 54);
-            button2.TabIndex = 6;
-            button2.Text = "Barcode Generator";
-            button2.UseVisualStyleBackColor = false;
+            btnGS1DataExpanded.BackColor = Color.FromArgb(10, 1, 169);
+            btnGS1DataExpanded.FlatAppearance.BorderSize = 0;
+            btnGS1DataExpanded.FlatStyle = FlatStyle.Flat;
+            btnGS1DataExpanded.ForeColor = Color.White;
+            btnGS1DataExpanded.Location = new Point(0, 54);
+            btnGS1DataExpanded.Name = "btnGS1DataExpanded";
+            btnGS1DataExpanded.Size = new Size(175, 60);
+            btnGS1DataExpanded.TabIndex = 6;
+            btnGS1DataExpanded.Text = "Manufacturer Coupon";
+            btnGS1DataExpanded.UseVisualStyleBackColor = false;
+            btnGS1DataExpanded.Click += btnGS1DataExpanded_Click;
             // 
-            // btnSettings
+            // btnType2
             // 
-            btnSettings.BackColor = Color.FromArgb(10, 1, 169);
-            btnSettings.FlatAppearance.BorderSize = 0;
-            btnSettings.FlatStyle = FlatStyle.Flat;
-            btnSettings.ForeColor = Color.White;
-            btnSettings.Location = new Point(0, 54);
-            btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(199, 54);
-            btnSettings.TabIndex = 5;
-            btnSettings.Text = "Settings";
-            btnSettings.UseVisualStyleBackColor = false;
-            btnSettings.Click += btnSettings_Click;
+            btnType2.BackColor = Color.FromArgb(10, 1, 169);
+            btnType2.FlatAppearance.BorderSize = 0;
+            btnType2.FlatStyle = FlatStyle.Flat;
+            btnType2.ForeColor = Color.White;
+            btnType2.Location = new Point(0, 114);
+            btnType2.Name = "btnType2";
+            btnType2.Size = new Size(175, 54);
+            btnType2.TabIndex = 5;
+            btnType2.Text = "Type 2 UPC_A";
+            btnType2.UseVisualStyleBackColor = false;
+            btnType2.Click += btnType2_Click;
             // 
-            // barcodeGenerator
+            // btnUpcaCode128
             // 
-            barcodeGenerator.BackColor = Color.FromArgb(10, 1, 169);
-            barcodeGenerator.FlatAppearance.BorderSize = 0;
-            barcodeGenerator.FlatStyle = FlatStyle.Flat;
-            barcodeGenerator.ForeColor = Color.White;
-            barcodeGenerator.Location = new Point(0, 0);
-            barcodeGenerator.Name = "barcodeGenerator";
-            barcodeGenerator.Size = new Size(199, 54);
-            barcodeGenerator.TabIndex = 4;
-            barcodeGenerator.Text = "Barcode Generator";
-            barcodeGenerator.UseVisualStyleBackColor = false;
-            barcodeGenerator.Click += barcodeGenerator_Click;
+            btnUpcaCode128.BackColor = Color.FromArgb(64, 64, 64);
+            btnUpcaCode128.FlatAppearance.BorderSize = 0;
+            btnUpcaCode128.FlatStyle = FlatStyle.Flat;
+            btnUpcaCode128.ForeColor = Color.White;
+            btnUpcaCode128.Location = new Point(0, 0);
+            btnUpcaCode128.Name = "btnUpcaCode128";
+            btnUpcaCode128.Size = new Size(175, 54);
+            btnUpcaCode128.TabIndex = 4;
+            btnUpcaCode128.Text = "UPC_A/ ERC";
+            btnUpcaCode128.UseVisualStyleBackColor = false;
+            btnUpcaCode128.Click += btnUpcaCode128_Click;
             // 
-            // viewSetting1
+            // saveFile
             // 
-            viewSetting1.AccessibleName = "Settings";
-            viewSetting1.AutoSize = true;
-            viewSetting1.Dock = DockStyle.Fill;
-            viewSetting1.Location = new Point(0, 0);
-            viewSetting1.Name = "viewSetting1";
-            viewSetting1.Size = new Size(1116, 639);
-            viewSetting1.TabIndex = 7;
-            viewSetting1.Visible = false;
+            saveFile.FileName = "Don't change";
             // 
             // bodyContainer
             // 
-            bodyContainer.BackColor = Color.DimGray;
-            bodyContainer.Controls.Add(barcodeGenerator1);
-            bodyContainer.Controls.Add(viewSetting1);
-            bodyContainer.Location = new Point(199, 0);
+            bodyContainer.BackColor = Color.FromArgb(52, 52, 52);
+            bodyContainer.Controls.Add(solutranMallgc1);
+            bodyContainer.Controls.Add(userControlType21);
+            bodyContainer.Controls.Add(gS1Coupon1);
+            bodyContainer.Controls.Add(ercUpca1);
+            bodyContainer.Location = new Point(175, 0);
             bodyContainer.Name = "bodyContainer";
-            bodyContainer.Size = new Size(1116, 639);
+            bodyContainer.Size = new Size(1160, 692);
             bodyContainer.TabIndex = 4;
             // 
-            // barcodeGenerator1
+            // userControlType21
             // 
-            barcodeGenerator1.AccessibleName = "MenuUserControls";
-            barcodeGenerator1.AutoSize = true;
-            barcodeGenerator1.BackColor = Color.FromArgb(52, 52, 52);
-            barcodeGenerator1.Dock = DockStyle.Fill;
-            barcodeGenerator1.Gtins = null;
-            barcodeGenerator1.Location = new Point(0, 0);
-            barcodeGenerator1.Name = "barcodeGenerator1";
-            barcodeGenerator1.Size = new Size(1116, 639);
-            barcodeGenerator1.TabIndex = 8;
+            userControlType21.BackColor = Color.FromArgb(54, 54, 54);
+            userControlType21.Dock = DockStyle.Fill;
+            userControlType21.Location = new Point(0, 0);
+            userControlType21.Name = "userControlType21";
+            userControlType21.Size = new Size(1160, 692);
+            userControlType21.TabIndex = 7;
+            userControlType21.Visible = false;
+            // 
+            // gS1Coupon1
+            // 
+            gS1Coupon1.BackColor = Color.FromArgb(54, 54, 54);
+            gS1Coupon1.Dock = DockStyle.Fill;
+            gS1Coupon1.Location = new Point(0, 0);
+            gS1Coupon1.Margin = new Padding(3, 2, 3, 2);
+            gS1Coupon1.Name = "gS1Coupon1";
+            gS1Coupon1.Size = new Size(1160, 692);
+            gS1Coupon1.TabIndex = 7;
+            gS1Coupon1.Visible = false;
+            // 
+            // ercUpca1
+            // 
+            ercUpca1.BackColor = Color.FromArgb(54, 54, 54);
+            ercUpca1.Dock = DockStyle.Fill;
+            ercUpca1.Location = new Point(0, 0);
+            ercUpca1.Margin = new Padding(3, 2, 3, 2);
+            ercUpca1.Name = "ercUpca1";
+            ercUpca1.Size = new Size(1160, 692);
+            ercUpca1.TabIndex = 0;
+            // 
+            // btnSolutranMallGC
+            // 
+            btnSolutranMallGC.BackColor = Color.FromArgb(10, 1, 169);
+            btnSolutranMallGC.FlatAppearance.BorderSize = 0;
+            btnSolutranMallGC.FlatStyle = FlatStyle.Flat;
+            btnSolutranMallGC.ForeColor = Color.White;
+            btnSolutranMallGC.Location = new Point(0, 168);
+            btnSolutranMallGC.Name = "btnSolutranMallGC";
+            btnSolutranMallGC.Size = new Size(175, 54);
+            btnSolutranMallGC.TabIndex = 7;
+            btnSolutranMallGC.Text = "Solutran/ Mall GC";
+            btnSolutranMallGC.UseVisualStyleBackColor = false;
+            btnSolutranMallGC.Click += btnSolutranMallGC_Click;
+            // 
+            // solutranMallgc1
+            // 
+            solutranMallgc1.BackColor = Color.FromArgb(54, 54, 54);
+            solutranMallgc1.Dock = DockStyle.Fill;
+            solutranMallgc1.Location = new Point(0, 0);
+            solutranMallgc1.Name = "solutranMallgc1";
+            solutranMallgc1.Size = new Size(1160, 692);
+            solutranMallgc1.TabIndex = 8;
+            solutranMallgc1.Visible = false;
             // 
             // Main
             // 
@@ -135,26 +179,29 @@
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(1315, 639);
+            ClientSize = new Size(1338, 696);
             Controls.Add(bodyContainer);
             Controls.Add(navContainer);
-            Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Font = new Font("Segoe UI", 10.2F);
             Name = "Main";
             Text = "Barcode Generator";
             navContainer.ResumeLayout(false);
             bodyContainer.ResumeLayout(false);
-            bodyContainer.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
         private PrintDialog printDialog;
         private Panel navContainer;
-        private Button barcodeGenerator;
+        public Button btnUpcaCode128;
+        public Button btnType2;
+        private SaveFileDialog saveFile;
         private Panel bodyContainer;
-        private Button button2;
-        private Button btnSettings;
-        private viewSetting viewSetting1;
-        private BarcodeGenerator barcodeGenerator1;
+        private ErcUpca ercUpca1;
+        public Button btnGS1DataExpanded;
+        public GS1Coupon gS1Coupon1;
+        private UserControlType2 userControlType21;
+        public Button btnSolutranMallGC;
+        private SolutranMallGC solutranMallgc1;
     }
 }
