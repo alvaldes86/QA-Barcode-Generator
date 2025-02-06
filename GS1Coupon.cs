@@ -60,7 +60,7 @@ namespace QA_Barcode_Generator
 
                 generateBarcode.GenerateBarCodeImage();
 
-                string path = @"C:\TEMP\tempBarcodes";
+                string path = Path.GetTempPath();
                 //if (!Directory.Exists(path))
                 //{
                 //    Directory.CreateDirectory(path);
